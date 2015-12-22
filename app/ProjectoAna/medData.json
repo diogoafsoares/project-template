@@ -1,0 +1,13 @@
+[ { medID: 0, name: 'Santiago Silva', user: 'med0', pass: 'pass' },
+  { medID: 1, name: 'Mariana Oliveira', user: 'med1', pass: 'pass' },
+  { medID: 2, name: 'Martim Oliveira', user: 'med2', pass: 'pass' },
+  { medID: 3, name: 'Beatriz Silva', user: 'med3', pass: 'pass' },
+  { medID: 4, name: 'Francisco Santos', user: 'med4', pass: 'pass' },
+  { medID: 5, name: 'Mariana Martins', user: 'med5', pass: 'pass' },
+  { medID: 6, name: 'Guilherme Santos', user: 'med6', pass: 'pass' },
+  { medID: 7,
+    name: 'Guilherme Pereira',
+    user: 'med7',
+    pass: 'pass' },
+  { medID: 8, name: 'Santiago Santos', user: 'med8', pass: 'pass' },
+  { medID: 9, name: 'Beatriz Pereira', user: 'med9', pass: 'pass' } ]

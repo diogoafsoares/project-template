@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+            <meta name="Patricia" content="CW test">
+                <title>CW Test Page</title>
+                <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+                <script src="cwApp.js"></script>
+				
+				<link href ="http://alfredoferreira.eu/cw/css/bootstrap.min.css"
+					rel = "stylesheet">
+					
+				<link href = "http://alfredoferreira.eu/cw/css/bootstrap-theme.min.css"
+					rel = "stylesheet">
+					
+				<link href = "http://alfredoferreira.eu/cw/css/theme.cess"
+				rel = "stylesheet">
+          
+    </head>
+    
+	<body>
+        <div data-ng-app="cwApp"                                                          
+             data-ng-controller="cwCtrl"
+			 ng.init="cwSwitch=false">
+				
+				<form name="cwForm" style= "font-size: 20px;" novalidate>
+                 
+					First Name:
+                
+					<input type="text" name="firstname" data-ng-model="user.firstname" required/>
+				
+					<span style ="color:red;"
+						ng-show="cwForm.firstname$dirty &&
+						cwForm.firstname.$invalid">
+				
+					<span ng-show = "cwForm.firstname.$error.required">
+						Username is required.</span>
+				
+					</span>
+					</br></br>
+                                                            
+					Last Name:
+                                                            
+					<input type="text" data-ng-model="user.lastname"/>
+					</br></br>
+															
+					Email:
+                
+					<input type="email" name="email" ng-model="email" required/>
+				
+					<span style ="color:red"
+						ng-show="cwForm.email$dirty && cwForm.email.$invalid">
+				
+					<span ng-show = "cwForm.email.$error.required">
+						Email is required.</span>
+				
+					<span 	class="alert alert-danger"
+						ng-show="cwForm.email.$error.email">
+						Invalid email address.</span>
+					</span>
+					</br></br>
+				
+					<button ng-click="reset_form()">Reset</button>
+															
+															 
+				</form>
+															
+                <h3>Goodbye {{ fullname() }}</h3>
+                                                
+                <h2>Courses</h2>
+				
+				<p>Filter:
+					
+					<input type="text" data-ng-model="course_filter">
+				</p>
+                
+				<table ng-controller="coursesCtrl">
+					<tr data-ng-repeat="c in courses | filter:course_filter | orderBy: 'abbrev'">
+						<td> {{ c.abbrev}}</td><td> ( {{c.name}}) </td>
+                     {{c.abbrev + " (" + c.name + ")"}}
+					</tr>
+                </table>
+				
+				<p>
+				
+					<input type ="checkbox"
+						    ng-model="cwSwitch">&nbsp;Ready to continue</p>
+					
+					<button ng-disabled="!cwSwitch"
+						    ng-click="count = count+1">Continue</button>
+					
+					<p>{{count}}</p>
+				
+		</div>
+    </body>
+</html>
