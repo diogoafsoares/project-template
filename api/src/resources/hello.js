@@ -33,3 +33,7 @@ exports.getreimb = function handler(request, reply) {
 exports.getdoctors = function handler(request, reply) {
 	reply(bl.getdoctors())
 }
+
+exports.postlogin = function handler (request, reply) {
+  reply(bl.postlogin(request.payload.user, request.payload.pswrd))
+}

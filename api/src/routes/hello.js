@@ -48,3 +48,9 @@ server.route({
 	path: '/getdoctors',
 	handler: resources.hello.getdoctors
 })
+
+server.route({
+  method: 'POST',
+  path: '/postlogin',
+  handler: resources.hello.postlogin
+})

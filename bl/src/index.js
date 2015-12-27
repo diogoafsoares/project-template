@@ -36,3 +36,16 @@ exports.getdoctors = function() {
 	return doctors
 }
 
+exports.postlogin = function (user, pswrd) {
+
+
+	for(var i = 0; i < doctors.length; i++){
+
+	if(user === doctors[i]["user"] && pswrd === doctors[i]["pass"]){
+			
+			return [true, doctors[i]];
+		}
+	}
+
+	return [false, ''];
+}

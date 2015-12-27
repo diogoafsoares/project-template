@@ -32,34 +32,29 @@ app.controller('defaultCtrl', function($scope, $http){
 
 	$scope.add=false;
 	$scope.newact=false;
-
 	
 
 	$scope.gotosecond = function (user, pswrd){
+
+		$http.post("http://localhost:9000/postlogin", {user: user, pswrd: pswrd}).then(function(response) {
+			$scope.login = response.data[0];
+			$scope.dados = response.data[1];
+
+			if($scope.login ==true){
+				$scope.docname = $scope.dados.name;
+				$scope.docesp = $scope.dados.speciality;
+
+				$scope.first=false;
+				$scope.third=false;
+				$scope.second=true;
+			}
+			else{
+				alert("Error: Password or Username invalid");/*displays error message*/
+			}
+		});
+	
 		
-		$scope.u= user;
-		$scope.p = pswrd;
-		$scope.verify = false;
-
-		var doc = eval($scope.doctor);
-
-		for(var i = 0; i < doc.length; i++){
-		if($scope.u == doc[i].user && $scope.p == doc[i].pass){
-			$scope.verify = true;
-			$scope.docname = doc[i].name;
-			$scope.docesp = doc[i].speciality;
-		}
 	}
-		if($scope.verify == true){
-			$scope.first=false;
-			$scope.third=false;
-			$scope.second=true;
-		}
-		else{
-			alert("Error: Password or Username invalid");/*displays error message*/
-		}
-
-		}
 
 		$scope.gotosec = function (){
 			$scope.first=false;
