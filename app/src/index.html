@@ -45,325 +45,340 @@
 							<button class="btn btn-lg btn-primary btn-block" type="button" ng-click="gotosecond(user, pswrd);" value="Login" >
 								Login
 							</button>							
-									
-									<label class="checkbox pull-right">
-										<input type="checkbox" value="remember-me">
-										Remember me
-									</label>
-									<br><br>
-									<a href="#" class="pull-left need-help">Forgot your password? </a><span class="clearfix"></span>
-								</form>
+
+							<label class="checkbox pull-right">
+								<input type="checkbox" value="remember-me">
+								Remember me
+							</label>
+							<br><br>
+							<class="pull-left need-help" ng-click="forget()">Forgot your password? </a><span class="clearfix"></span>
+						</form>
+					</div>
+					<a href="#" class="text-center new-account">Create an account </a>
+				</div>
+
+			</div>			
+
+		</div>
+
+
+	</div>
+
+
+	<!--segunda pagina-->
+
+	<div ng-show="second">
+		<!--tabela principal -->
+		<table class="table table-bordered" >
+			<thead>
+				<tr class = "info">
+					<!-- 1ª linha com tabelas contendo titulo e dc com imagens-->
+					<th>
+						<!--tabela com logo insure e titulo da app -->
+						<table>
+							<thead>
+								<tr>
+									<!-- logo InSure-->
+									<th style = "width:10%">
+										<img src = "/img/insure_i.png" class = "img-thumbnail">
+									</th>
+									<!-- titulo InSure-->
+									<th style = "width:15%">
+										<h1>InSure MediApp <span class="label label-default"></span></h1>
+									</th>
+								</tr>
+							</thead>
+						</table>
+					</th>
+					<th style = "width:75%">
+						<!--tabela com nome médico e imagem -->
+						<table>
+							<thead>
+								<tr>
+									<!-- nome do medico-->
+									<th style = "width:14%">
+										<h3 class = "pull-right">Dr. {{docname}} <br><br> Speciality: {{docesp}} <h4> </h4><span class="label label-default"></span></h3><br><br>
+
+									</th>
+									<!-- imagem de perfil-->
+									<th style = "width:1%">
+										<div class="text-xs-center">
+											<img src = "/img/doctor_i.png" class = "img-thumbnail">
+										</div>
+									</th>
+								</tr>
+							</thead>
+						</table>
+					</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<!--2ª linha, 1ª coluna -->
+
+				<tr>
+					<td>
+						<!--lista de espera -->
+						<h2>Waiting List <span class="label label-default"></span></h2>
+						<p>
+							<form name="cwForm" style= "font-size: 20px;" novalidate>
+								<strong>Search:</strong>
+
+								<input type="text" data-ng-model="course_filter">
+							</form>
+						</p>
+						<!--painel com links para os clientes -->
+						<div class = "panel panel-primary">
+							<div class = "panel-body"style="height: 775px; overflow-y: scroll;">
+
+
+								<ul>
+									<li ng-repeat="p in patient | orderBy:'name'| filter:course_filter">
+
+										<a ng-click="gotothird(p)">{{ p.name }}</a><br><br>
+									</li>
+								</ul>
+
+
 							</div>
-							<a href="#" class="text-center new-account">Create an account </a>
 						</div>
-					</div>			
+					</td>
+					<!--2ª linha 2ª coluna -->
+					<td>
 
-			</div>
-			</div>
-
-
-			<!--segunda pagina-->
-
-			<div ng-show="second">
-				<!--tabela principal -->
-				<table class="table table-bordered" >
-					<thead>
-						<tr class = "info">
-							<!-- 1ª linha com tabelas contendo titulo e dc com imagens-->
-							<th>
-								<!--tabela com logo insure e titulo da app -->
-								<table>
-									<thead>
-										<tr>
-											<!-- logo InSure-->
-											<th style = "width:10%">
-												<img src = "/img/insure_i.png" class = "img-thumbnail">
-											</th>
-											<!-- titulo InSure-->
-											<th style = "width:15%">
-												<h1>InSure MediApp <span class="label label-default"></span></h1>
-											</th>
-										</tr>
-									</thead>
-								</table>
-							</th>
-							<th style = "width:75%">
-								<!--tabela com nome médico e imagem -->
-								<table>
-									<thead>
-										<tr>
-											<!-- nome do medico-->
-											<th style = "width:14%">
-												<h3 class = "pull-right">Dr. {{docname}} <br><br> Speciality: {{docesp}} <h4> </h4><span class="label label-default"></span></h3><br><br>
-												
-											</th>
-											<!-- imagem de perfil-->
-											<th style = "width:1%">
-												<div class="text-xs-center">
-													<img src = "/img/doctor_i.png" class = "img-thumbnail">
-												</div>
-											</th>
-										</tr>
-									</thead>
-								</table>
-							</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<!--2ª linha, 1ª coluna -->
-
-						<tr>
-							<td>
-								<!--lista de espera -->
-								<h2>Waiting List <span class="label label-default"></span></h2>
-								<p>
-									<form name="cwForm" style= "font-size: 20px;" novalidate>
-										<strong>Search:</strong>
-
-										<input type="text" data-ng-model="course_filter">
-									</form>
-								</p>
-								<!--painel com links para os clientes -->
-								<div class = "panel panel-primary">
-									<div class = "panel-body"style="height: 775px; overflow-y: scroll;">
+						<h2>Insurance Requests <span class="label label-default text-left"></span><a ng-click="gotofirst()" class="btn btn-danger text-right" style = "float: right;"role="button">Logout</a></h2>
 
 
-										<ul>
-											<li ng-repeat="p in patient | orderBy:'name'| filter:course_filter">
+						<div class="panel panel-primary">
 
-												<a ng-click="gotothird(p)">{{ p.name }}</a><br><br>
-											</li>
-										</ul>
+							<div class="panel-heading">Pending</div>
 
+							<div class="panel-body" style="max-height: 155px; overflow-y: scroll;">
 
-									</div>
-								</div>
-							</td>
-							<!--2ª linha 2ª coluna -->
-							<td>
-
-								<h2>Insurance Requests <span class="label label-default text-left"></span><a ng-click="gotofirst()" class="btn btn-danger text-right" style = "float: right;"role="button">Logout</a></h2>
-								
-
-								<div class="panel panel-primary">
-
-									<div class="panel-heading">Pending</div>
-
-									<div class="panel-body" style="max-height: 155px; overflow-y: scroll;">
-
-										<table ng-controller="defaultCtrl">
-											<tr data-ng-repeat="r in request | filter: {status: 'PENDING'}">
-												<td role="presentation"> ReqID: {{ r.reqID }} &nbsp &nbsp RepID{{ r.repID }} <br><br></td>
-											</tr>
-										</table>
-
-									</div>
-								</div>
-
-								<div class="panel panel-primary">
-
-									<div class="panel-heading">Requested</div>
-
-									<div class="panel-body" style="max-height: 155px; overflow-y: scroll;">
-
-										<table ng-controller="defaultCtrl">
-											<tr data-ng-repeat="r in request | filter: {status: 'REQUESTED'}">
-												<td role="presentation"> ReqID: {{ r.reqID }} &nbsp &nbsp RepID{{ r.repID }} <br><br></td>
-											</tr>
-										</table>
-
-									</div>
-								</div>
-
-
-								<div class="panel panel-primary">
-
-									<div class="panel-heading">Aproved</div>
-
-									<div class="panel-body" style="max-height: 155px; overflow-y: scroll;">
-
-										<table ng-controller="defaultCtrl">
-											<tr data-ng-repeat="r in request | filter: {status: 'ACCEPTED'}">
-												<td role="presentation"> ReqID: {{ r.reqID }} &nbsp &nbsp RepID{{ r.repID }} <br><br></td>
-											</tr>
-										</table>
-
-									</div>
-								</div>
-
-								<div class="panel panel-primary">
-
-									<div class="panel-heading">Rejected</div>
-
-									<div class="panel-body" style="max-height: 155px; overflow-y: scroll;">
-
-										<table ng-controller="defaultCtrl">
-											<tr data-ng-repeat="r in request | filter: {status: 'REJECTED'}">
-												<td role="presentation"> ReqID: {{ r.reqID }} &nbsp &nbsp RepID{{ r.repID }} <br><br></td>
-											</tr>
-										</table>
-
-									</div>
-								</div>
-
-
-							</td>
-						</tr>
-
-					</tbody>
-				</table>
-
-			</div>
-
-			<!--terceira pagina-->
-
-			<div ng-show="third">
-				<!--tabela principal -->
-				<table class="table table-bordered" >
-					<thead>
-						<!-- tenta mudar cor da linha-->
-						<tr class = "info">
-							<!-- 1ª linha com tabelas contendo titulo e dc com imagens-->
-							<th>
-								<!--tabela com logo insure e titulo da app -->
-								<table>
-									<thead>
-										<tr>
-											<!-- logo InSure-->
-											<th style = "width:10%">
-												<img src = "/img/insure_i.png" class = "img-thumbnail">
-											</th>
-											<!-- titulo InSure-->
-											<th style = "width:15%">
-												<h1>InSure MediApp <span class="label label-default"></span></h1>
-											</th>
-										</tr>
-									</thead>
-								</table>
-							</th>
-							<th style = "width:75%">
-								<!--tabela com nome médico e imagem -->
-								<table>
-									<thead>
-										<tr>
-											<!-- nome do medico-->
-											<th style = "width:14%">
-												<h3 class = "pull-right">Dr. {{docname}} <br><br> Speciality: {{docesp}} <span class="label label-default"></span></h3>
-											</th>
-											<!-- imagem de perfil-->
-											<th style = "width:1%">
-												<div class="text-xs-center">
-													<img src = "/img/doctor_i.png" class = "img-thumbnail">
-												</div>
-											</th>
-										</tr>
-									</thead>
-								</table>
-							</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<!--2ª linha, 1ª coluna -->
-						<tr>
-							<td>
-								<!--lista de espera -->
-								<h2>Patient Information <span class="label label-default"></span></h2>
-								<br><br>
-								<!--painel com links para os clientes -->
-								<form name="cwForm" style= "font-size: 20px;" novalidate>
-									<strong>Name:</strong> {{patient}}
-									<br><br>
-									<form name="cwForm" style= "font-size: 20px;" novalidate>
-										<strong>Patient ID:</strong> {{patid}}
-										<br><br>
-										<form name="cwForm" style= "font-size: 20px;" novalidate>
-											<strong>Policy:</strong> {{policy}}
-											<br><br>
-											<form name="cwForm" style= "font-size: 20px;" novalidate>
-												<strong>Policy Type:</strong> {{policytype}}
-											</td>
-											<!--2ª linha 2ª coluna -->
-											<td>
-
-												<h2>Medical Acts <span class="label label-default"></span><a ng-click="gotofirst()" class="btn btn-danger text-right" style = "float: right;"role="button">Logout</a></h2>
-												<br>
-												<div style="height: 350px; overflow-y: scroll;">	
-
-													<table class="table" id="actstable" width="300px">
-														<thead>
-															<tr>
-																<th><h4>Act ID</h4></th>
-																<th><h4>Name</h4></th>
-																<th><h4>Cost</h4></th>
-																<th><h4>Reimbursement (%)</h4></th>
-																
-																<th><h4>Delete</h4></th>
-															</tr>
-														</thead>
-														<tbody>
-															
-															<tr ng-repeat="act in tableacts">
-																<td>{{act.actid}}</td>
-																<td>{{act.name}}</td>
-																<td>{{act.cost}}</td>
-																<td>{{act.rmb}}</td>
-																<td><input type="button" value="Delete"class="btn btn-xs  btn-lg pull-center" ng-click = "removeRow(act)"></td>
-															</tr>
-															
-
-														</tbody>
-													</table>
-
-												</div>
-
-
-												<button type="button" class="btn btn-primary  btn-lg pull-left" ng-click="shownewact();">Add</button>
-
-
-
-												<div class ="text-center">
-													<a ng-click="gotosec()" class="btn btn-primary btn-lg text-center" role="button">Submit</a>
-												</div>
-
-												<div ng-show = "newact">
-													<h2>Add New Act <span class="label label-default"></span></h2>
-													<p>
-														<form name="cwForm" style= "font-size: 20px;" novalidate>
-															<strong>Search:</strong>
-
-															<input type="text" data-ng-model="course_filter">
-														</form>
-													</p>
-													<!--painel com links para os clientes -->
-													<div class = "panel panel-primary">
-														<div class = "panel-body"style="height: 125px; overflow-y: scroll;">
-
-
-															<ul>
-																<li ng-repeat="a in act | orderBy:'name'| filter:course_filter">
-
-																	<a ng-click="addRow(a)">{{ a.name }}</a><br><br>
-																</li>
-															</ul>
-
-
-														</div>
-													</div>
-													<button type="button" class="btn btn-primary  btn-lg pull-left" ng-click="hidenewact();">Cancel</button>
-												</div>
-
-
-											</td>
-										</tr>
-
-									</tbody>
+								<table ng-controller="defaultCtrl">
+									<tr data-ng-repeat="r in request | filter: {status: 'PENDING'}">
+										<td role="presentation"> ReqID: {{ r.reqID }} &nbsp &nbsp RepID{{ r.repID }} <br><br></td>
+									</tr>
 								</table>
 
 							</div>
+						</div>
 
-							<script src="/js/bl.js"></script>
-							<script src="/js/app.js"></script>
-						</body>
-						</html>
+						<div class="panel panel-primary">
+
+							<div class="panel-heading">Requested</div>
+
+							<div class="panel-body" style="max-height: 155px; overflow-y: scroll;">
+
+								<table ng-controller="defaultCtrl">
+									<tr data-ng-repeat="r in request | filter: {status: 'REQUESTED'}">
+										<td role="presentation"> ReqID: {{ r.reqID }} &nbsp &nbsp RepID{{ r.repID }} <br><br></td>
+									</tr>
+								</table>
+
+							</div>
+						</div>
+
+
+						<div class="panel panel-primary">
+
+							<div class="panel-heading">Aproved</div>
+
+							<div class="panel-body" style="max-height: 155px; overflow-y: scroll;">
+
+								<table ng-controller="defaultCtrl">
+									<tr data-ng-repeat="r in request | filter: {status: 'ACCEPTED'}">
+										<td role="presentation"> ReqID: {{ r.reqID }} &nbsp &nbsp RepID{{ r.repID }} <br><br></td>
+									</tr>
+								</table>
+
+							</div>
+						</div>
+
+						<div class="panel panel-primary">
+
+							<div class="panel-heading">Rejected</div>
+
+							<div class="panel-body" style="max-height: 155px; overflow-y: scroll;">
+
+								<table ng-controller="defaultCtrl">
+									<tr data-ng-repeat="r in request | filter: {status: 'REJECTED'}">
+										<td role="presentation"> ReqID: {{ r.reqID }} &nbsp &nbsp RepID{{ r.repID }} <br><br></td>
+									</tr>
+								</table>
+
+							</div>
+						</div>
+
+
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+
+	</div>
+
+	<!--terceira pagina-->
+
+	<div ng-show="third">
+		<!--tabela principal -->
+		<table class="table table-bordered" >
+			<thead>
+				<!-- tenta mudar cor da linha-->
+				<tr class = "info">
+					<!-- 1ª linha com tabelas contendo titulo e dc com imagens-->
+					<th>
+						<!--tabela com logo insure e titulo da app -->
+						<table>
+							<thead>
+								<tr>
+									<!-- logo InSure-->
+									<th style = "width:10%">
+										<img src = "/img/insure_i.png" class = "img-thumbnail">
+									</th>
+									<!-- titulo InSure-->
+									<th style = "width:15%">
+										<h1>InSure MediApp <span class="label label-default"></span></h1>
+									</th>
+								</tr>
+							</thead>
+						</table>
+					</th>
+					<th style = "width:75%">
+						<!--tabela com nome médico e imagem -->
+						<table>
+							<thead>
+								<tr>
+									<!-- nome do medico-->
+									<th style = "width:14%">
+										<h3 class = "pull-right">Dr. {{docname}} <br><br> Speciality: {{docesp}} <span class="label label-default"></span></h3>
+									</th>
+									<!-- imagem de perfil-->
+									<th style = "width:1%">
+										<div class="text-xs-center">
+											<img src = "/img/doctor_i.png" class = "img-thumbnail">
+										</div>
+									</th>
+								</tr>
+							</thead>
+						</table>
+					</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<!--2ª linha, 1ª coluna -->
+				<tr>
+					<td>
+						<!--lista de espera -->
+						<h2>Patient Information <span class="label label-default"></span></h2>
+						<br><br>
+						<!--painel com links para os clientes -->
+						<form name="cwForm" style= "font-size: 20px;" novalidate>
+							<strong>Name:</strong> {{patient}}
+							<br><br>
+							<form name="cwForm" style= "font-size: 20px;" novalidate>
+								<strong>Patient ID:</strong> {{patid}}
+								<br><br>
+								<form name="cwForm" style= "font-size: 20px;" novalidate>
+									<strong>Policy:</strong> {{policy}}
+									<br><br>
+									<form name="cwForm" style= "font-size: 20px;" novalidate>
+										<strong>Policy Type:</strong> {{policytype}}
+									</td>
+									<!--2ª linha 2ª coluna -->
+									<td>
+
+										<h2>Medical Acts <span class="label label-default"></span><a ng-click="gotofirst()" class="btn btn-danger text-right" style = "float: right;"role="button">Logout</a></h2>
+										<br>
+										<div style="height: 350px; overflow-y: scroll;">	
+
+											<table class="table" id="actstable" width="300px">
+												<thead>
+													<tr>
+														<th><h4>Act ID</h4></th>
+														<th><h4>Name</h4></th>
+														<th><h4>Cost</h4></th>
+														<th><h4>Reimbursement (%)</h4></th>
+
+														<th><h4>Delete</h4></th>
+													</tr>
+												</thead>
+												<tbody>
+
+													<tr ng-repeat="act in tableacts">
+														<td>{{act.actid}}</td>
+														<td>{{act.name}}</td>
+														<td>{{act.cost}}</td>
+														<td>{{act.rmb}}</td>
+														<td><input type="button" value="Delete"class="btn btn-xs  btn-lg pull-center" ng-click = "removeRow(act)"></td>
+													</tr>
+
+
+												</tbody>
+											</table>
+
+										</div>
+
+
+										<button type="button" class="btn btn-primary  btn-lg pull-left" ng-click="shownewact();">Add</button>
+
+
+
+										<div class ="text-center">
+											<a ng-click="gotosec()" class="btn btn-primary btn-lg text-center" role="button">Submit</a>
+										</div>
+
+										<div ng-show = "newact">
+											<h2>Add New Act <span class="label label-default"></span></h2>
+											<p>
+												<form name="cwForm" style= "font-size: 20px;" novalidate>
+													<strong>Search:</strong>
+
+													<input type="text" data-ng-model="course_filter">
+												</form>
+											</p>
+											<!--painel com links para os clientes -->
+											<div class = "panel panel-primary">
+												<div class = "panel-body"style="height: 125px; overflow-y: scroll;">
+
+
+													<ul>
+														<li ng-repeat="a in act | orderBy:'name'| filter:course_filter">
+
+															<a ng-click="addRow(a)">{{ a.name }}</a><br><br>
+														</li>
+													</ul>
+
+
+												</div>
+											</div>
+											<button type="button" class="btn btn-primary  btn-lg pull-left" ng-click="hidenewact();">Cancel</button>
+										</div>
+
+
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+
+					</div>
+
+					<div ng-show="forgot">
+
+						<form>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email address</label>
+								<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" ng-model="vm.user.email">
+							</div>
+							
+							<button type="submit" class="btn btn-default" ng-click="gotofirst()">Reset Password</button>
+						</form>
+					</div>
+
+					<script src="/js/bl.js"></script>
+					<script src="/js/app.js"></script>
+				</body>
+				</html>

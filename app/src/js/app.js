@@ -36,7 +36,8 @@ app.controller('defaultCtrl', function($scope, $http){
 
 	$scope.add=false;
 	$scope.newact=false;
-	
+
+	$scope.forgot=false;
 
 	$scope.gotosecond = function (user, pswrd){
 
@@ -89,6 +90,7 @@ app.controller('defaultCtrl', function($scope, $http){
 		$scope.second=false;
 		$scope.third=false;
 		$scope.first=true;
+		$scope.forgot=false;
 	}
 
 	$scope.shownewact = function (){
@@ -146,6 +148,10 @@ app.controller('defaultCtrl', function($scope, $http){
 		}
 		$scope.tableacts.splice( index, 1 );		
 
+	}
+
+	$scope.forget = function (){
+		$scope.forgot=true;
 	}
 
 
