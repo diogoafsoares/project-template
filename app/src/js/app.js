@@ -33,7 +33,7 @@ app.controller('defaultCtrl', function($scope, $http){
 	$scope.add=false;
 	$scope.newact=false;
 
-	$scope.tableacts = [{'a':'def', 'b':'def', 'c':'def', 'd':'def'},]
+	
 
 	$scope.gotosecond = function (user, pswrd){
 		
@@ -46,6 +46,8 @@ app.controller('defaultCtrl', function($scope, $http){
 		for(var i = 0; i < doc.length; i++){
 		if($scope.u == doc[i].user && $scope.p == doc[i].pass){
 			$scope.verify = true;
+			$scope.docname = doc[i].name;
+			$scope.docesp = doc[i].speciality;
 		}
 	}
 		if($scope.verify == true){
@@ -82,6 +84,12 @@ app.controller('defaultCtrl', function($scope, $http){
 		$scope.third=true;
 	}
 
+	$scope.gotofirst = function (){
+		$scope.second=false;
+		$scope.third=false;
+		$scope.first=true;
+	}
+
 	$scope.shownewact = function (){
 		$scope.newact=true;
 	}
@@ -95,32 +103,42 @@ app.controller('defaultCtrl', function($scope, $http){
 		$scope.acttable.splice(index, 1);
 	}
 
-	$scope.createact = function (a){
+
+	
+	$scope.tableacts = [ ];
+
+	$scope.addRow = function(a){	
+
 		$scope.actname = a.name;
 		$scope.actid = a.actID;
 		$scope.actcost = a.cost;
-		$scope.acttable.push(a.name);
-		
 
 		$http.get("http://localhost:9000/getreimb").then(function(response){
 		$scope.rmb = response.data;
 		});
 
+		var r = eval($scope.rmb);
 
-		for(var i = 0; i < rmb.length; i++){
-			if (actid === rmb.actid){
-				$scope.reimbursement = rmb.reimb_percentage;
+		for(var i = 0; i < r.length; i++){
+			if ($scope.policytype == r[i].policy_type){
+				$scope.reimbursement = r[i].reimb_percentage;
 			}
 
 		}
 
+	
+
+		$scope.tableacts.push({ 'actid':$scope.actid, 'name': $scope.actname, 'cost': $scope.actcost, 'rmb': $scope.reimbursement});
+		
 	}
 
-	$scope.removeRow = function(name){				
+	$scope.removeRow = function(act){		
+		$scope.name = act.name;
 		var index = -1;		
-		var tableacts = eval( $scope.tableacts );
+		var tab = eval( $scope.tableacts );
+
 		for( var i = 0; i < tab.length; i++ ) {
-			if( comArr[i].name === name ) {
+			if( tab[i].name == $scope.name ) {
 				index = i;
 				break;
 			}
@@ -128,10 +146,9 @@ app.controller('defaultCtrl', function($scope, $http){
 		if( index === -1 ) {
 			alert( "Something gone wrong" );
 		}
-		$scope.companies.splice( index, 1 );		
-	};
-)}
+		$scope.tableacts.splice( index, 1 );		
 
+	}
 
 })
 

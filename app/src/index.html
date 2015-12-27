@@ -64,7 +64,7 @@
 										Remember me
 									</label>
 									<br><br>
-									<a href="#" class="pull-left need-help">Need help? </a><span class="clearfix"></span>
+									<a href="#" class="pull-left need-help">Forgot your password? </a><span class="clearfix"></span>
 								</form>
 							</div>
 							<a href="#" class="text-center new-account">Create an account </a>
@@ -105,7 +105,8 @@
 										<tr>
 											<!-- nome do medico-->
 											<th style = "width:14%">
-												<h3 class = "pull-right">Dr.Nick Riviera <span class="label label-default"></span></h3>
+												<h3 class = "pull-right">Dr. {{docname}} <br><br> Speciality: {{docesp}} <h4> </h4><span class="label label-default"></span></h3><br><br>
+												
 											</th>
 											<!-- imagem de perfil-->
 											<th style = "width:1%">
@@ -153,7 +154,8 @@
 							<!--2ª linha 2ª coluna -->
 							<td>
 
-								<h2>Insurance Requests <span class="label label-default"></span></h2>
+								<h2>Insurance Requests <span class="label label-default text-left"></span><a ng-click="gotofirst()" class="btn btn-danger text-right" style = "float: right;"role="button">Logout</a></h2>
+								
 
 								<div class="panel panel-primary">
 
@@ -224,6 +226,7 @@
 				</table>
 
 			</div>
+
 			<!--terceira pagina-->
 
 			<div ng-show="third">
@@ -257,7 +260,7 @@
 										<tr>
 											<!-- nome do medico-->
 											<th style = "width:14%">
-												<h3 class = "pull-right">Dr.Nick Riviera <span class="label label-default"></span></h3>
+												<h3 class = "pull-right">Dr. {{docname}} <br><br> Speciality: {{docesp}} <span class="label label-default"></span></h3>
 											</th>
 											<!-- imagem de perfil-->
 											<th style = "width:1%">
@@ -295,126 +298,84 @@
 											<!--2ª linha 2ª coluna -->
 											<td>
 
-												<h2>Medical Acts <span class="label label-default"></span></h2>
-												<br><br>
+												<h2>Medical Acts <span class="label label-default"></span><a ng-click="gotofirst()" class="btn btn-danger text-right" style = "float: right;"role="button">Logout</a></h2>
+												<br>
 												<div style="height: 350px; overflow-y: scroll;">	
 
 													<table class="table" id="actstable" width="300px">
 														<thead>
 															<tr>
-																<th>Act ID</th>
-																<th>Name</th>
-																<th>Cost</th>
-																<th>Reimbursement(%)</th>
+																<th><h4>Act ID</h4></th>
+																<th><h4>Name</h4></th>
+																<th><h4>Cost</h4></th>
+																<th><h4>Reimbursement (%)</h4></th>
 																
-																<th>Delete</th>
+																<th><h4>Delete</h4></th>
 															</tr>
 														</thead>
 														<tbody>
-															<tr>
-																<td>4</td>
-																<td>X-Ray</td>
-																<td>25</td>
-																<td>0.5</td>
-																
-																<td><button type="button" class="btn btn-xs  btn-lg pull-center" ng-click = "">-</button></td>
+															
+															<tr ng-repeat="act in tableacts">
+																<td>{{act.actid}}</td>
+																<td>{{act.name}}</td>
+																<td>{{act.cost}}</td>
+																<td>{{act.rmb}}</td>
+																<td><input type="button" value="Delete"class="btn btn-xs  btn-lg pull-center" ng-click = "removeRow(act)"></td>
 															</tr>
-															<tr>
-																<td>{{actid}}</td>
-																<td>{{actname}}</td>
-																<td>{{actcost}}</td>
-																<td>{{reimbursement}}</td>
-																<td><button type="button" class="btn btn-xs  btn-lg pull-center" ng-click = "delete(a)">-</button></td>
-															</tr>
-					<!--
-					<div ng-show="add">
-					<tr>
-						<td>Blood Tests</td>
-						<td>5</td>
-						<td>0.5</td>
-						<td>10</td>
-						<td><button type="button" class="btn btn-xs  btn-lg pull-center" ng-click="hideadd()">Enter</button></td>
-					</tr>
-					</div>
-				-->
-			</tbody>
-		</table>
-			<!--
-			<table ng-controller="defaultCtrl">
-			<tr>
-			<td>Blood Tests</td>
-				<td>5</td>
-				<td>0.5</td>
-				<td>10</td>
-				<td><button type="button" class="btn btn-xs  btn-lg pull-center" ng-click="delete()">delete</button></td>
-			</tr>
-			</table>
-		-->
+															
+
+														</tbody>
+													</table>
+
+												</div>
 
 
-	</div>
-	<!--
-	
-	<div class="btn-group">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			Action <span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" ng-controller="defaultCtrl">
-		<li ng-repeat="a in act | orderBy:'name'"> {{ a.name }} </li>
-		</ul>
-	</div>
-	-->
-
-	<button type="button" class="btn btn-primary  btn-lg pull-left" ng-click="shownewact();">Add</button>
+												<button type="button" class="btn btn-primary  btn-lg pull-left" ng-click="shownewact();">Add</button>
 
 
-	<!--<button type="button" class="btn btn-primary  btn-lg center-block">Submit</button>-->
+												<!--<button type="button" class="btn btn-primary  btn-lg center-block">Submit</button>-->
 
-	<div class ="text-center">
-		<a ng-click="gotosec()" class="btn btn-primary btn-lg text-center" role="button">Submit</a>
-	</div>
+												<div class ="text-center">
+													<a ng-click="gotosec()" class="btn btn-primary btn-lg text-center" role="button">Submit</a>
+												</div>
 
-	<div ng-show = "newact">
-	<h2>Add New Act <span class="label label-default"></span></h2>
-								<p>
-									<form name="cwForm" style= "font-size: 20px;" novalidate>
-										<strong>Search:</strong>
+												<div ng-show = "newact">
+													<h2>Add New Act <span class="label label-default"></span></h2>
+													<p>
+														<form name="cwForm" style= "font-size: 20px;" novalidate>
+															<strong>Search:</strong>
 
-										<input type="text" data-ng-model="course_filter">
-									</form>
-								</p>
-								<!--painel com links para os clientes -->
-								<div class = "panel panel-primary">
-									<div class = "panel-body"style="height: 125px; overflow-y: scroll;">
-
-
-										<ul>
-											<li ng-repeat="a in act | orderBy:'name'| filter:course_filter">
-
-												<a ng-click="createact(a)">{{ a.name }}</a><br><br>
-											</li>
-										</ul>
+															<input type="text" data-ng-model="course_filter">
+														</form>
+													</p>
+													<!--painel com links para os clientes -->
+													<div class = "panel panel-primary">
+														<div class = "panel-body"style="height: 125px; overflow-y: scroll;">
 
 
-									</div>
-								</div>
-								<button type="button" class="btn btn-primary  btn-lg pull-left" ng-click="hidenewact();">Cancel</button>
-</div>
-	
+															<ul>
+																<li ng-repeat="a in act | orderBy:'name'| filter:course_filter">
 
-</td>
-</tr>
-
-</tbody>
-</table>
+																	<a ng-click="addRow(a)">{{ a.name }}</a><br><br>
+																</li>
+															</ul>
 
 
+														</div>
+													</div>
+													<button type="button" class="btn btn-primary  btn-lg pull-left" ng-click="hidenewact();">Cancel</button>
+												</div>
 
-</div>
 
+											</td>
+										</tr>
 
+									</tbody>
+								</table>
 
-<script src="/js/bl.js"></script>
-<script src="/js/app.js"></script>
-</body>
-</html>
+							</div>
+
+							<script src="/js/bl.js"></script>
+							<script src="/js/app.js"></script>
+						</body>
+						</html>
