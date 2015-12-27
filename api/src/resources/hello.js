@@ -10,9 +10,6 @@ exports.post = function handler (request, reply) {
   reply(bl.sayHello(request.payload.name))
 }
 
-exports.diogo = function handler(request, reply) {
-	reply(bl.Diogo())
-}
 
 exports.getpatients = function handler(request, reply) {
 	reply(bl.getpatients())
@@ -36,4 +33,8 @@ exports.getdoctors = function handler(request, reply) {
 
 exports.postlogin = function handler (request, reply) {
   reply(bl.postlogin(request.payload.user, request.payload.pswrd))
+}
+
+exports.getreports = function handler(request, reply) {
+	reply(bl.getreports())
 }

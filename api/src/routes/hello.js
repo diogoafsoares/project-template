@@ -54,3 +54,9 @@ server.route({
   path: '/postlogin',
   handler: resources.hello.postlogin
 })
+
+server.route({
+	method: 'GET',
+	path: '/getreports',
+	handler: resources.hello.getreports
+})

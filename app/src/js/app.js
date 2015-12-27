@@ -25,6 +25,10 @@ app.controller('defaultCtrl', function($scope, $http){
 		$scope.doctor = response.data;
 	});
 
+	$http.get("http://localhost:9000/getreports").then(function(response){
+	$scope.report = response.data;
+	});
+
 
 	$scope.first=true;
 	$scope.second=false;
@@ -40,9 +44,11 @@ app.controller('defaultCtrl', function($scope, $http){
 			$scope.login = response.data[0];
 			$scope.dados = response.data[1];
 
+
 			if($scope.login ==true){
 				$scope.docname = $scope.dados.name;
 				$scope.docesp = $scope.dados.speciality;
+				$scope.docid = $scope.dados.doc_ID;
 
 				$scope.first=false;
 				$scope.third=false;
@@ -56,7 +62,7 @@ app.controller('defaultCtrl', function($scope, $http){
 		
 	}
 
-		$scope.gotosec = function (){
+	$scope.gotosec = function (){
 			$scope.first=false;
 			$scope.third=false;
 			$scope.second=true;
@@ -98,7 +104,6 @@ app.controller('defaultCtrl', function($scope, $http){
 		$scope.acttable.splice(index, 1);
 	}
 
-
 	
 	$scope.tableacts = [ ];
 
@@ -121,9 +126,7 @@ app.controller('defaultCtrl', function($scope, $http){
 
 		}
 
-	
-
-		$scope.tableacts.push({ 'actid':$scope.actid, 'name': $scope.actname, 'cost': $scope.actcost, 'rmb': $scope.reimbursement});
+	$scope.tableacts.push({ 'actid':$scope.actid, 'name': $scope.actname, 'cost': $scope.actcost, 'rmb': $scope.reimbursement});
 		
 	}
 

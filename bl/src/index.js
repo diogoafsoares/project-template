@@ -6,14 +6,12 @@ var requests = require('./requests.json');
 var acts = require('./acts.json');
 var reimb = require('./acts-rmb.json');
 var doctors = require('./doctors.json');
+var reports = require('./reports.json');
 
 exports.sayHello = function (name) {
   return 'Hello ' + (name || 'World')
 }
 
-exports.Diogo = function() {
-	return 'Diogo é panila'
-}
 
 exports.getpatients = function() {
 	return patients
@@ -48,4 +46,8 @@ exports.postlogin = function (user, pswrd) {
 	}
 
 	return [false, ''];
+}
+
+exports.getreports = function() {
+	return reports
 }
