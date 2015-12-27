@@ -12,6 +12,9 @@ exports.sayHello = function (name) {
   return 'Hello ' + (name || 'World')
 }
 
+exports.Diogo = function() {
+	return 'Diogo é panila'
+}
 
 exports.getpatients = function() {
 	return patients
